@@ -1,5 +1,5 @@
 def tentarnovamente():
-    print("Vamos jogar?Sim ou Não?")
+    print("Vamos tentar novamente?Sim ou Não?")
     print("Para sair do jogo tecle quarquer letra!")
     opcao = input(": ")
     return opcao.lower()
@@ -36,17 +36,26 @@ def primeirocenario():
         "\ndo crime, e surpreendido com um assaltante, sua moto tinha sido"
         "\ncomprada recentemente.Ele está muito nervoso, sem saber o que fazer."
          )
+
 def segundocenario():
     print(
           "Ao chegar em casa o homem descansa e conversa com amigo, casa dele um"
           "pouco bagunçada, então ele pensa em situações que pode levar ao destino" 
           "que a moto está!Escolha a melhor opção diante do que ele argumenta"
-          )         
+          )
+
+def terceirocenario():
+    print(
+          "Policial por ser bastante conhecido dentro das favela, e por conhecer"
+           " as principais caracteristica das mesma, ele tem algumas opções:"     
+         )     
+
 def informacoes(nome):
     print(
           "Diante dessa situação você vai tentar ajuda-lo! " 
           f"{nome} quais dessas situações indicaria:"
-         )         
+         )
+
 def ganhoujogo():
     print("Parabéns!Você ganhou o jogo, seguindo toda a lógica.")
     print(
@@ -133,7 +142,6 @@ def perdeujogo():
             "\n─────────▀███████████▀ "
           )
 
-
 def fim_de_jogo():
    print("FIM")   
    print(
@@ -161,15 +169,18 @@ def fim_de_jogo():
         "\n───────────────████████████─────────────"
         ) 
 
-
+"""Escopo principa"""
 resposta = 0
 opcao = "sim"
 nome = ""
+
 while opcao == "sim":
     opcao = mensagem_abertura(opcao)
+   
     if opcao == "sim":
         primeirocenario()  
         print("-"*50)
+
         print(
               "Precisa de sua ajuda para encontrar  a sua moto. Informe seu" 
               " nome para iniciar"
@@ -237,8 +248,9 @@ while opcao == "sim":
                       "convicção que a moto está lá  e totalmente inseguro e por"
                       "fim você falha e perde o jogo!"
                       )  
-                print("Alternativa errada!Fim de jogo!Tentar novamente?SIm ou Não?")      
-                opcao = input(":") 
+                print("Alternativa errada!")
+                opcao = tentarnovamente()  
+                
                 if opcao.lower() == "sim":
                      continue
                 elif opcao.lower() == "não":
@@ -260,12 +272,58 @@ while opcao == "sim":
                       "favela que se encontra a moto!"
                       )
                 ganhoujogo()
-                break      
+                break    
+            
+            elif  resposta == 3:
+                  print("Boa escolha!")
+                  print("-"*50)
+                  terceirocenario()
+                  print("-"*50)
+                  print("Mas ainda tem uma situação a ser resolver")
+                 
+                  print("1-Acionar a bope.")
+                  print(
+                        "2-Ir junto com o seu amigo policial a cada umas das" 
+                        " favelas."
+                        ) 
+                  resposta = int(input(":"))  
+                  if  resposta == 1:
+                      print(
+                            f"Essa alternaviva {resposta} e inviavél, pois a bope" 
+                            "não realiza esse tipo de operação!"
+                            )
+                      opcao = tentarnovamente()
+                      
+                      if opcao.lower() == "sim":
+                        continue
+                      elif opcao.lower() == "não":
+                        fim_de_jogo()
+                        break
+                      else:
+                        fim_de_jogo()
+                        break 
+                  
+                  elif resposta == 2:
+                     print(f"alternativa boa a de numero {resposta}")
+                     print(
+                           "Então eles vão até as comunidades sem armas, na moral" 
+                           "e consgue desrolar com os traficantes!"
+                           )
+                     print("É consegue recuperar! ")      
+                     ganhoujogo()
+                     break
+                  else:
+                    print(f"Opção errada!{resposta}")
+                    fim_de_jogo()  
+                    break
+
+            else: 
+                  print("Opção errada!")
+                  perdeujogo()
 
     elif opcao == "não":
          opcao = "sim"
          continue
     else:
          fim_de_jogo()  
-         break          
-  
+         break         
